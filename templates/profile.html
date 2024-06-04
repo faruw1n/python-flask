@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %}Страница профиля{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="profile">
+
+            <div class="column">
+                <div class="list" id="list1">
+                    <div class="vertical-line-column"></div>
+                    <a href="/profile?active=list1">Общая информация</a>
+                </div>
+                <div class="list" id="list2">
+                    <div class="vertical-line-column"></div>
+                    <a href="/profile_PD?active=list2">Персональные данные</a>
+                </div>
+                <div class="list" id="list3">
+                    <div class="vertical-line-column"></div>
+                    <a href="/profile_HB?active=list3">История бронирования</a>
+                </div>
+            </div>
+
+
+            <div class="vertical-line"></div>
+
+            <div class="base_information">
+                <div class="boxdate">
+                    <div class="dateinfo">
+                        Никнейм: {{current_user.username}}
+                    </div>
+                    <div class="dateinfo">
+                        Электронная почта: {{current_user.email}}
+                    </div>
+                    <div class="horizontal-line"></div>
+                    <div class="change_info">
+                        Хотите изменить данные?
+                    </div>
+                    <form method="post">
+                        {{ form.hidden_tag() }}
+                            <div class="inputstring">
+                                {{ form.username.label(class = "form_control") }}
+
+                                {% if form.username.errors %}
+                                    {{ form.username(class = "form_control_pl", placeholder="", autocomplete="off",) }}
+                                    <div>
+                                        {% for errors in form.username.errors%}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.username(class = "form_control", placeholder="", autocomplete="off",) }}
+                                {% endif %}
+                            </div>
+
+                            <div class="inputstring">
+                                {{ form.email.label(class = "form_control") }}
+
+                                {% if form.email.errors %}
+                                    {{ form.email(class = "form_control_pl") }}
+                                    <div>
+                                        {% for errors in form.email.errors%}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.email(class = "form_control_pl") }}
+                                {% endif %}
+                            </div>
+                            <div class="button">
+                                {{ form.submit(class = "button_new") }}
+                            </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

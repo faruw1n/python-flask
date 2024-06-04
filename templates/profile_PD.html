@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block title %}Страница профиля{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="profile">
+
+            <div class="column">
+                <div class="list" id="list1">
+                    <div class="vertical-line-column"></div>
+                    <a href="/profile?active=list1">Общая информация</a>
+                </div>
+                <div class="list" id="list2">
+                    <div class="vertical-line-column"></div>
+                    <a href="/profile_PD?active=list2">Персональные данные</a>
+                </div>
+                <div class="list" id="list3">
+                    <div class="vertical-line-column"></div>
+                    <a href="/profile_HB?active=list3">История бронирования</a>
+                </div>
+            </div>
+
+            <div class="vertical-line"></div>
+
+            <div class="base_information">
+                <div class="boxdate">
+                    <div class="dateinfo">
+                        Никнейм: {{current_user.username}}
+                    </div>
+                    <div class="dateinfo">
+                        Электронная почта: {{current_user.email}}
+                    </div>
+                   <form method="post">
+                       {{ form.hidden_tag() }}
+                            <div class="inputstring">
+                                {{ form.name.label(class = "form_control") }}
+
+                                {% if form.name.errors %}
+                                    {{ form.name(class = "form_control_pl", placeholder="", autocomplete="off",) }}
+                                    <div>
+                                        {% for errors in form.name.errors%}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.name(class = "form_control", placeholder="", autocomplete="off",) }}
+                                {% endif %}
+                            </div>
+
+                            <div class="inputstring">
+                                {{ form.lastname.label(class = "form_control") }}
+
+                                {% if form.lastname.errors %}
+                                    {{ form.lastname(class = "form_control_pl") }}
+                                    <div>
+                                        {% for errors in form.lastname.errors%}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.lastname(class = "form_control_pl") }}
+                                {% endif %}
+                            </div>
+                            <div class="inputstring">
+                                {{ form.phone_number.label(class = "form_control") }}
+
+                                {% if form.phone_number.errors %}
+                                    {{ form.phone_number(class = "form_control_pl") }}
+                                    <div>
+                                        {% for errors in form.phone_number.errors%}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.phone_number(class = "form_control_pl") }}
+                                {% endif %}
+                            </div>
+                            <div class="button">
+                                {{ form.submit(class = "button_new") }}
+                            </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

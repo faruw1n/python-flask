@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block title %}Страница регистрации профиля{% endblock %}
+
+{% block body %}
+
+    <form method="post">
+        {{ form.hidden_tag() }}
+        <div class="container">
+            <div class="border">
+                <div class="users">
+
+                    <div class="userstext">
+                        Регистрация
+                    </div>
+
+                    <div class="inputstring">
+                        {{ form.username.label(class = "form_control") }}
+
+                        {% if form.username.errors %}
+                            {{ form.username(class = "form_control_pl", placeholder="", autocomplete="off",) }}
+                            <div>
+                                {% for errors in form.username.errors%}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.username(class = "form_control", placeholder="", autocomplete="off",) }}
+                        {% endif %}
+                    </div>
+
+                    <div class="inputstring">
+                        {{ form.email.label(class = "form_control") }}
+
+                        {% if form.email.errors %}
+                            {{ form.email(class = "form_control_pl") }}
+                            <div>
+                                {% for errors in form.email.errors%}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.email(class = "form_control_pl") }}
+                        {% endif %}
+                    </div>
+
+                    <div class="inputstring">
+                        {{ form.password.label(class = "form_control") }}
+
+                        {% if form.password.errors %}
+                            {{ form.password(class = "form_control_pl") }}
+                            <div>
+                                {% for errors in form.password.errors%}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.password(class = "form_control_pl") }}
+                        {% endif %}
+                    </div>
+
+                    <div class="inputstring">
+                        {{ form.confirm_password.label(class = "form_control") }}
+
+                        {% if form.confirm_password.errors %}
+                            {{ form.confirm_password(class = "form_control_pl") }}
+                            <div>
+                                {% for errors in form.confirm_password.errors%}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.confirm_password(class = "form_control_pl") }}
+                        {% endif %}
+                    </div>
+
+                    <div class="button">
+                        {{ form.submit(class = "button_new") }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="header_container">
+        <div class="header border-top pt-3">
+            <small class="text-muted">
+                Уже имеется аккаунт? <a class="ml-2" href="{{ url_for('login') }}">Войти</a>
+            </small>
+        </div>
+    </div>
+
+{% endblock %}

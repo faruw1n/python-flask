@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Страница профиля{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="profile">
+
+            <div class="column">
+                <div class="list" id="list1">
+                    <div class="vertical-line-column"></div>
+                    <a href="/profile?active=list1">Общая информация</a>
+                </div>
+                <div class="list" id="list2">
+                    <div class="vertical-line-column"></div>
+                    <a href="/profile_PD?active=list2">Персональные данные</a>
+                </div>
+                <div class="list" id="list3">
+                    <div class="vertical-line-column"></div>
+                    <a href="/profile_HB?active=list3">История бронирования</a>
+                </div>
+            </div>
+
+            <div class="vertical-line"></div>
+
+        </div>
+    </div>
+{% endblock %}

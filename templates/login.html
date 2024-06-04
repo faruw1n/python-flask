@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}Страница входа{% endblock %}
+
+{% block body %}
+
+    <form method="post">
+        {{ form.hidden_tag() }}
+        <div class="container">
+            <div class="border">
+                <div class="users">
+
+                    <div class="userstext">
+                        Вход
+                    </div>
+
+                    <div class="inputstring">
+                        {{ form.email.label(class = "form_control") }}
+
+                        {% if form.email.errors %}
+                            {{ form.email(class = "form_control_pl") }}
+                            <div>
+                                {% for errors in form.email.errors%}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.email(class = "form_control_pl") }}
+                        {% endif %}
+                    </div>
+
+                    <div class="inputstring">
+                        {{ form.password.label(class = "form_control") }}
+
+                        {% if form.password.errors %}
+                            {{ form.password(class = "form_control_pl") }}
+                            <div>
+                                {% for errors in form.password.errors%}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.password(class = "form_control_pl") }}
+                        {% endif %}
+                    </div>
+                    <div class="form_check">
+                        {{ form.remember(class = "form_check-input") }}
+                        {{ form.remember.label(class = "form_check-label") }}
+                    </div>
+
+                    <div class="button">
+                        {{ form.submit(class = "button_new") }}
+                    </div>
+                    <small class="text_down text-muted">
+                    <a href="#">Забыли пароль?</a>
+                    </small>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="header_container">
+        <div class="header border-top pt-3">
+            <small class="text-muted">
+                Нужен аккаунт? <a class="ml-2" href="{{ url_for('register') }}">Зарегистрироваться</a>
+            </small>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Страница сброса пароля{% endblock %}
+
+{% block body %}
+    <form method="post">
+            {{ form.hidden_tag() }}
+            <div class="container">
+                <div class="border">
+                    <div class="users">
+
+                        <div class="userstext">
+                            Reset Password
+                        </div>
+
+                        <div class="inputstring">
+                            {{ form.email.label(class = "form_control") }}
+
+                            {% if form.email.errors %}
+                                {{ form.email(class = "form_control_pl") }}
+                                <div>
+                                    {% for errors in form.email.errors%}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.email(class = "form_control_pl") }}
+                            {% endif %}
+                        </div>
+
+                        <div class="button">
+                            {{ form.submit(class = "button_new") }}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+{% endblock %}
